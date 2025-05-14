@@ -1,0 +1,203 @@
+.catinfo .left {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    margin: 0;
+}
+.catinfo .left figure img {
+    border-radius: 8px;
+    width: 80px;
+}
+
+img {
+    border: none;
+}
+.catinfo .left .caption {
+    margin: 0;
+    margin-left:15px;
+}
+.catinfo .left .caption .title {
+    color: #2e2e2e;
+    font-size: 18px;
+    font-weight: 600;
+}
+.exam-details {    
+    width: 100%;
+    padding: 20px 15px;
+    margin: 0;
+    border-right: 1px solid #dfe5ea;
+}
+.title {
+    color: #202020;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.details-group {
+    display: grid;
+    grid-gap: 40px 30px;
+    grid-template-columns: repeat(2,1fr);
+    max-width: 320px;
+    width: 100%;
+    margin: 0 0 30px;
+}
+.details {
+    display: -webkit-flex;
+    display: flex;
+    margin: 0;
+}
+
+.btn-startQuiz {
+    color: #fff !important;
+    background: #f06421;
+    width: 50%;
+}
+
+.exam-instructions {
+    padding: 20px 25px;
+}
+
+.previous-attempts {
+    padding: 15px;
+}
+.table {
+    width: 100%;
+    overflow-x: auto;
+}
+.table table {
+    width: 100%;
+    margin: 0;
+}
+.table table thead, body.dark-mode .table table thead {
+    background: #796eff;
+}
+.table table thead tr th {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    padding: 12px 15px;
+    border-style: none;
+    white-space: nowrap;
+}
+tbody, td, tfoot, th, thead, tr {
+    border-color: inherit;
+    border-style: none;
+    border-width: 0;
+}
+.table table tbody tr td {
+    /* color: white; */
+    font-size: 14px;
+    text-align: center;
+    /* background: #fff; */
+    border: 0;
+    border-bottom: 1px solid #dfe5ea!important;
+    white-space: nowrap;
+    padding: 8px 15px;
+    display: table-cell;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.catinfo {
+    background: #eafcff !important;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #00d1cf;
+    border-radius: 10px 10px 0 0;
+}
+
+.qli:hover {
+    background-color: #e8e9ec !important;
+}
+.currentQuestion {    
+    background-color: #03A9F4 !important;
+}
+.completedQuestion{
+	background-color: #4CAF50 !important;
+}
+.leftQuestion {
+    background-color: #ff9800 !important;
+}
+input[type="radio"] {
+    vertical-align: middle;
+  }
+  input[type="checkbox"] {
+    vertical-align: middle;
+  }
+  .temprowincorrect {
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -.5);
+    margin-left: calc(var(--bs-gutter-x) * -.5);
+    height: 35px;
+    background: #f5d6d4; 
+}
+.temprowcorrect {
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -.5);
+    margin-left: calc(var(--bs-gutter-x) * -.5);
+    height: 35px;
+    background: #d9ede9; 
+}
+.temprowunattempted {
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -.5);
+    margin-left: calc(var(--bs-gutter-x) * -.5);
+    height: 35px;
+    background: #FCC981; 
+}
+.incorrect{
+    color: #fff;
+    background: #f44336;
+    border-radius: 5px;
+}
+.correct{
+    color: #fff;
+    background: #4caf50;    
+    border-radius: 5px;
+}
+.unattempted{
+    color: #fff;
+    background: orange;
+    border-radius: 5px;
+}
+.optioncorrect{
+    background: #d9ede9;    
+    border-radius: 5px;
+    color: green;
+}
+.optionincorrect{
+    background: #f5d6d4;    
+    border-radius: 5px;
+    color: red;
+}
+
+@media (max-width : 600px) {
+    .DGuide {
+        text-align: center;
+    }
+    .DGuide a{
+        float:none !important;
+    }
+}
+.react-pdf__Page__canvas {
+    margin: 0 auto;
+    width: 80% !important;
+    height: 100% !important;
+}
+.react-pdf__message react-pdf__message--error{
+    display: none !important;
+}
+

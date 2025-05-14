@@ -1,0 +1,46 @@
+#zmmtg-root{
+    margin-top: -5px;
+    padding-bottom: 2px;
+}
+#zmmtg-root .main-footer.footer{
+    height: 50px;
+}
+#zmmtg-root .page-footer {
+    display: none;
+}
+
+#zmmtg-root .preview-root {
+    background: #000;
+}
+
+#zmmtg-root .preview-agreement {
+    color: #fff;
+    display: none;
+}
+
+#zmmtg-root .zoom-workplace-logo {
+    display:none;
+}
+
+#zmmtg-root #zoom-meetingsdk-logo {
+    background-image: url('https://www.scholarhat.com/images/logo-white.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 220px; 
+    height: 30px;
+}
+
+#zmmtg-root #fullscreen-pip-btn {
+    display: none;
+}
+#zmmtg-root #app-signal {
+    display: none;
+}
+#zmmtg-root .sharee-container__indicator {
+    display: none;
+}
+
+#zmmtg-root .sharee-container__canvas-outline{
+    border: 1px solid #2d353c !important;
+}

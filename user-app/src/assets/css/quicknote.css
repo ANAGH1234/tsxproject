@@ -1,0 +1,32 @@
+.quicknote {
+    overflow-wrap: break-word;  
+    line-height: 1.7em;
+    font-size: 16px;
+    margin-bottom: 35px;
+    /*for controls */
+    min-height: 100vh;
+}
+
+.quicknote h2 {
+    color: #2196F3;
+    font-size: 26px;
+    margin: 15px 0;
+}
+
+.quicknote h3 {
+    color: #0ac3c1;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.quicknote h4 {
+    color: #0ea973;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.quicknote h5 {
+    color: #eb278c;
+    font-size: 22px;
+    margin: 10px 0;
+}

@@ -1,0 +1,389 @@
+html {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.app {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background: #010101;
+    color: #ddd;
+    line-height: 14px;
+    font-size: 14px;
+}
+
+.bar {
+    background: rgb(36, 38, 43);
+    padding: 10px 5px;
+    font-size: 18px;
+    position: fixed;
+    width: 100%;
+    color: rgb(204, 204, 204);
+    height: 40px;
+}
+
+.div-controls {
+    clear: both;
+    width: 100%;
+    /* position: fixed; */
+    bottom: 0;
+    font-size: 12px;
+    background: #24262b;
+    padding: 5px;
+    border-top: 1px solid #4f4a4a;
+}
+
+pre {
+    white-space: pre-wrap;
+    background: #1a1b1d;
+    padding: 4px 8px;
+}
+
+.topic-title {
+    width: 72%;
+    display: inline-block;
+    line-height: 20px;
+    margin-top: -3px;
+}
+
+.duration {
+    float: right;
+    font-size: 12px;
+}
+
+/* Split Pane Start*/
+.Resizer {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #000;
+    opacity: 0.2;
+    z-index: 1;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+}
+
+    .Resizer:hover {
+        -webkit-transition: all 2s ease;
+        transition: all 2s ease;
+    }
+
+    .Resizer.horizontal {
+        height: 6px;
+        margin: -3px 0;
+        border-top: 3px solid rgb(151, 150, 150);
+        border-bottom: 3px solid rgba(215, 205, 205, 0);
+        cursor: row-resize;
+        width: 100%;
+    }
+
+        .Resizer.horizontal:hover {
+            border-top: 3px solid #b07e28;
+            border-bottom: 3px solid #b07e28;
+        }
+
+    .Resizer.vertical {
+        /*width: 11px;*/
+        margin: 0 -5px;
+        border-left: 5px solid rgba(255, 255, 255, 0);
+        border-right: 5px solid rgba(255, 255, 255, 0);
+        cursor: col-resize;
+    }
+
+        .Resizer.vertical:hover {
+            border-left: 5px solid rgba(0, 0, 0, 0.5);
+            border-right: 5px solid rgba(0, 0, 0, 0.5);
+        }
+
+/* Split Pane End*/
+.w3-button {
+    padding: 5px 16px !important;
+}
+
+/* Third Party Code Sandbox */
+.tp-sandbox {
+    background: #494b4c;
+    padding: 41px 15px 15px 0px;
+}
+
+#spinner {
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.course-heading {
+    font-size: 21px;
+    color: #fff;
+    background: rgb(57, 58, 62);
+    padding: 10px 0px 12px 4px;
+    /* position: fixed;
+    z-index: 2;   
+    width: 320px;*/
+    line-height: 26px;
+    min-height: 70px;
+}
+
+.text-middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.course-logo {
+    padding-right: 6px;
+    padding-top: 4px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/*.topic {
+    font-weight: 500;
+    font-size: 15px;
+    border: 1px solid #2a2d33;
+}*/
+
+.topic-active {
+    border-left: 3px solid rgb(235, 133, 9) !important;
+    background: #2f3440;
+}
+
+    .topic-active > a {
+        cursor: default !important;
+    }
+
+.hint {
+    background: rgb(79, 82, 91);
+    padding: 5px;
+    margin: 5px;
+}
+
+.topicheader {
+    background: rgb(36, 38, 43);
+    padding: 10px 5px;
+    font-size: 18px;
+    position: fixed;
+    width: 100%;
+    color: rgb(204, 204, 204);
+    height: 40px;
+    padding-left: 55px;
+}
+
+/*#subtop{
+    font-size: 14px;
+    color: #ccc;
+    position: fixed;
+    z-index: 2;
+    padding: 28px 0 0 44px;
+} */
+
+.SplitPane {
+    left: auto !important;
+    right: auto !important;
+    position: inherit !important;
+}
+
+/* Player*/
+pad-t50 {
+    padding-top: 60px;
+}
+
+.app ::-webkit-scrollbar {
+    width: 12px;
+}
+
+.app ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 12px #000;
+}
+
+.app ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 20px 20px rgba(152, 143, 143, 0.47);
+}
+
+.shows_text_with_dash {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width : 600px) {
+    #goicon {
+        display: block;
+    }
+
+    #gobtn {
+        display: none;
+    }
+}
+
+.icon-player {   
+    float: left;
+    font-size: 14px;
+    padding-top: 5px;
+    margin-right: 5px;
+}
+
+#mySidebar {
+    width: 320px;
+    display: block;
+    border-right: 1px solid #2f3440 !important;
+}
+
+#main {
+    margin-left: 320px;
+    height: calc(100vh);
+}
+
+@media only screen and (max-width: 500px) {
+    .modal-wrapper {
+        background: #2a2d33;
+        border: 1px solid #9199a9;
+        margin: 4%;
+        width: 90%;
+        border-radius: 4px;
+    }
+
+    #spanlogo {
+        display: none;
+    }
+
+    .course-heading {
+        width: 100%;
+        word-break: break-word;
+    }
+
+    #main {
+        /* margin-left: 100%; */
+        margin-left: 0px;
+    }
+
+    #mySidebar {
+        display: none;
+    }
+
+    #openme {
+        display: block !important;
+        padding: 5px !important;
+        background: #191818 !important;
+        border-radius: 0;
+    }
+
+    #closeme {
+        background: #252525;
+        margin-top: 12px !important;
+        padding: 5px 9px 5px 6px !important;
+    }
+
+    .text-middle {
+        padding-right: 10%;
+    }
+
+    #closeme {
+        margin-left: -12%;
+    }
+}
+
+.vimeo-video {
+    width: 100% !important;
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 0;
+    height: 100vh !important;
+    overflow: hidden;
+}
+
+    .vimeo-video iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+/* React Spinner Start*/
+.spinner {
+    width: 100%;
+    height: 100%;
+}
+
+    .spinner > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+.nav__list label {
+    box-shadow: none;
+    padding: 1rem 0 .5rem 0.4rem !important
+}
+
+.nav__list span {
+    box-shadow: none;
+    display: inline-block;
+}
+
+.nav a,
+.nav label,
+.nav span {
+    background-color: transparent;
+}
+
+    .nav a,
+    .nav label,
+    .nav span:hover {
+        background-color: transparent !important;
+    }
+
+
+@media (max-width : 600px) {
+    .gobacktext {
+        display: none;
+    }
+
+    .gobackicon {
+        margin-right: 5px !important;
+    }
+}
+.topicself {
+    font-weight: 500;
+    font-size: 15px;
+    border: 1px solid #2a2d33;
+    color: #fff;
+}
+
+.topicself-active {
+    border-left: 3px solid rgb(235, 133, 9) !important;
+    background: #2f3440 !important;
+}
+
+    .topicself-active > a {
+        cursor: default !important;
+    }
+
+#accordionPanelself .accordion-item {
+    background-color: transparent;
+    border: 0px solid rgba(0,0,0,.125);
+}
+
+#accordionPanelself button {
+    padding: 15px 10px !important;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    background: #222427 !important;
+    color: #fff;
+    border-bottom: 2px solid #3c4045;
+}
+
+#accordionPanelself .accordion-body {
+    padding: 0px;
+}

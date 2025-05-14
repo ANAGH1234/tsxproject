@@ -1,0 +1,226 @@
+.show-video {
+    max-height: 100%;
+}
+.hide-video{
+    max-height:0;
+}
+.w3-btn, .w3-btn-block, .w3-button {
+    border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 6px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none !important;
+    color: #fff;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.w3-sidenav, .w3-sidebar {
+    height: 100%;
+    width: 200px;
+    background-color: #151515;
+    position: fixed !important;
+    z-index: 1;
+    overflow: auto;
+}
+    .w3-sidenav a, .w3-navblock a {
+        padding: 4px 2px 4px 16px;
+    }
+
+        .w3-sidenav a:hover, .w3-navblock a:hover {
+            background-color: #ccc;
+            color: #000;
+        }
+        .w3-main, #main {
+            transition: margin-left .4s;
+        }
+.w3-animate-left {
+    position: relative;
+    -webkit-animation: animateleft 0.4s;
+    animation: animateleft 0.4s;
+}
+
+@-webkit-keyframes animateleft {
+    from {
+        left: -300px;
+        opacity: 0;
+    }
+    to {
+        left: 0;
+        opacity: 1;
+    }
+}
+@keyframes animateleft {
+    from {
+        left: -300px;
+        opacity: 0;
+    }
+    to {
+        left: 0;
+        opacity: 1;
+    }
+}
+
+.w3-animate-right {
+    position: relative;
+    -webkit-animation: animateright 0.4s;
+    animation: animateright 0.4s;
+}
+@-webkit-keyframes animateright {
+    from {
+        right: -300px;
+        opacity: 0;
+    }
+    to {
+        right: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes animateright {
+    from {
+        right: -300px;
+        opacity: 0;
+    }
+    to {
+        right: 0;
+        opacity: 1;
+    }
+}
+/*Used in menu*/
+.w3-teal, .w3-hover-teal:hover {
+    color: #fff !important;
+    position: fixed;
+    z-index: 10;
+}
+.w3-sidebar ol, .w3-sidebar ul{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+}
+.w3-sidebar li {
+    border-left: 3px solid transparent;
+    vertical-align: baseline;
+    border-bottom: 1px solid #454853;
+    min-height: 90px;
+}
+.w3-sidebar ol, .w3-sidebar ul {
+    list-style: none;
+}
+
+.w3-sidebar a {
+    text-decoration: none;
+} 
+
+/* Styling top level items*/
+.nav a, .nav label {
+    display: block;
+    /*padding: 1.4rem .85rem;*/
+    color: #ccc;
+    background-color: #151515;
+    -webkit-transition: all .25s ease-in;
+    transition: all .25s ease-in;
+}
+
+    .nav a:focus, .nav a:hover, .nav label:focus, .nav label:hover {
+        color: #fff;
+        background: #030303;
+    }
+
+.nav label {
+    cursor: pointer;
+    font-size: 15.5px;
+    line-height: 22px;
+}
+
+/* Styling first level lists items*/
+.group-list a, .group-list label {
+    padding-left: 2rem;
+    background: #252525;
+    box-shadow: inset 0 -1px #373737;
+}
+
+    .group-list a:focus, .group-list a:hover, .group-list label:focus, .group-list label:hover {
+        background: #131313;
+    }
+
+/* Hide nested lists*/
+.group-list, .sub-group-list, .sub-sub-group-list {
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: max-height .5s ease-in-out;
+    transition: max-height .5s ease-in-out;
+}
+/* reset the height when checkbox is checked */
+.list-expand{
+    max-height: 1000px;
+}
+.nav__list input[type=checkbox]:checked + label + ul { 
+    max-height: 1000px;
+} 
+/* Commented to fix auto collapse issue in left sidebar*/
+ /* .nav__list input[type=checkbox] + label + ul { 
+    max-height: 0px;
+}  */
+
+ /* .nav__list input[type=checkbox]:not(:checked) + label + ul { 
+    max-height: 0px;
+} */
+
+/** Rotating chevron icon*/
+.w3-sidebar label > span {
+    float: right;
+    -webkit-transition: -webkit-transform .65s ease;
+    transition: transform .65s ease;
+}
+
+.nav__list input[type=checkbox]:checked + label > span {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+#mySidebar .accordion-content__row {
+    line-height: 16px;
+    display: block;
+    padding: 12px 8px;
+    border-bottom: 1px solid black;
+    font-weight: 400;
+    cursor: pointer;
+}
+    #mySidebar .accordion-content__row .fa-lock {
+        color: #aaa;
+        float: left;
+        font-size: 14px;
+        width: 6%;
+        padding-top: 2px;
+    }
+    #mySidebar .accordion-content__row .fa-unlock-alt {
+        float: left;
+        font-size: 14px;
+        width: 6%;
+        padding-top: 2px;
+    }
+    #mySidebar .accordion-content__row > span {
+        color: #aaa;
+    }
+#mySidebar .accordion-content__row__title {
+    max-width: 100%;
+    font-size: 14px;
+}
+#mySidebar .accordion-content__row__time {
+    float: right;
+    text-align: right;
+    font-size: 12px;
+}
+.openactive {
+    border-left: 4px solid #4CAF50 ; background-color: #393434;
+}
+.openactivefree a {
+    border-left: 4px solid #ffc107;
+    background-color: #393434;
+}

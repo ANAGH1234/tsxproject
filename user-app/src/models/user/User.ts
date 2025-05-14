@@ -1,0 +1,44 @@
+import type { GenderMaster, SkillMasterDTO, SelectListItem } from "../dashboard/dashboard";
+import type { UserDetailsDTO, UserProfessionalInformationDTO } from "../problems/problems";
+
+export interface User {
+  subscriptionType?: any;
+  userId: number;
+  firstName?: string;
+  lastName?: string;
+  password?: string;
+  confirmPassword?: string;
+  email?: string;
+  mobileCountryCode?: string;
+  mobileNo?: string;
+  file?: File;
+  profileImage?: string;
+  mailSentCounter?: number;
+  encryptedKey?: string;
+  verificationUrl?: string;
+  isActive?: boolean;
+  isArchived?: boolean;
+  createdDate?: Date;
+  updatedDate?: Date;
+  loginFailedCount?: number;
+  isLockedOut?: boolean;
+  isVerified?: boolean;
+  verificationDate?: Date;
+  roles?: string[];
+  genderId?: number;
+  genderName?: string;
+  userDetails?: UserDetailsDTO;
+  userProfessionalInformation?: UserProfessionalInformationDTO;
+  genderList?: GenderMaster[];
+  selectedSkills?: SkillMasterDTO[];
+  selectedInterestSkills?: SkillMasterDTO[];
+  skillList?: SelectListItem[];
+  skillInterestList?: SelectListItem[];
+  jobId?: number;
+  membershipId: number;
+  membershipExpiry: Date;
+  membershipSubscribeDate?: Date;
+  providerName?: string;
+  token?: string;
+  getFullName?: () => string;
+}
