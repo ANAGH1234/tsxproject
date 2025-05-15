@@ -3,31 +3,13 @@ import TrainingService from '../../services/TrainingService';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import authUser from '../../helpers/authUser';
 import { EnumCourseType } from '../../helpers/enum';
-import type { Paging } from '../../models/dashboard/dashboard';
 import type { SubscriptionDTO } from '../../models/training/training';
 import type { User } from '../../models/user/User';
 
-// Extend SubscriptionDTO to include additional properties
-interface ExtendedSubscriptionDTO extends SubscriptionDTO {
-  courseId: number;
-  subscriptionId: number;
-  course: string;
-  mobileBanner: string;
-  firstSubscribedTabName: string;
-  videoCount?: number;
-  labCount?: number;
-  testPapersCount?: number;
-  projectCount?: number;
-  qaCount?: number;
-}
 
-// Define the interface for the state
-interface SubscribedTrainingData extends Paging<ExtendedSubscriptionDTO> {
-  data: ExtendedSubscriptionDTO[];
-}
 
 const MyCourses: React.FC = () => {
-  const [subscribedTrainingData, setSubscribedTraining] = useState<SubscribedTrainingData | null>(null);
+  const [subscribedTrainingData, setSubscribedTraining] = useState<SubscriptionDTO | any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const user: User | null = authUser.Get();
 
@@ -39,40 +21,40 @@ const MyCourses: React.FC = () => {
       user.userId,
       user.membershipId,
       EnumCourseType.SelfPlaced,
-      user.membershipExpiry.toISOString()
+      user.membershipExpiry
     )
       .then((res) => {
-        setSubscribedTraining(res as SubscribedTrainingData);
+        setSubscribedTraining(res.Data);
         setIsLoading(false);
       })
       .catch((err) => {
         console.error('Error fetching subscribed courses:', err);
         setIsLoading(false);
       });
-  }, [user]);
-
+  }, []);
+console.log(subscribedTrainingData)
   return (
     <div className="mt-4">
       <div className="tab-wrapper">
         <section className="tab-content">
-          {subscribedTrainingData?.data && subscribedTrainingData.data.length > 0 ? (
+          {subscribedTrainingData && subscribedTrainingData.length > 0 ? (
             <div className="row mt-5">
-              {subscribedTrainingData.data.map((item, index) => {
+              {subscribedTrainingData.map((item : SubscriptionDTO, index : number) => {
                 let sessionURL = '';
-                if (item.firstSubscribedTabName === '1') {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0`;
-                } else if (item.firstSubscribedTabName === '2') {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0/selfplaced`;
-                } else if (item.firstSubscribedTabName === '8') {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0/labs`;
-                } else if (item.firstSubscribedTabName === '11') {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0/tests`;
-                } else if (item.firstSubscribedTabName === '10') {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0/qna`;
-                } else if (item.firstSubscribedTabName === '7') {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0/project`;
+                if (item.FirstSubscribedTabName === '1') {
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0`;
+                } else if (item.FirstSubscribedTabName === '2') {
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0/selfplaced`;
+                } else if (item.FirstSubscribedTabName === '8') {
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0/labs`;
+                } else if (item.FirstSubscribedTabName === '11') {
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0/tests`;
+                } else if (item.FirstSubscribedTabName === '10') {
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0/qna`;
+                } else if (item.FirstSubscribedTabName === '7') {
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0/project`;
                 } else {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0`;
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0`;
                 }
                 return (
                   <div className="col-sm-6 mb-3" key={index}>
@@ -81,14 +63,14 @@ const MyCourses: React.FC = () => {
                         <div className="d-flex flex-row">
                           <div className="p-2">
                             <img
-                              src={item.mobileBanner}
-                              alt={item.course}
+                              src={item.MobileBanner}
+                              alt={item.Course}
                               className="img-fluid"
                               style={{ maxHeight: '70px' }}
                             />
                           </div>
                           <div className="p-2 w-100">
-                            <h5 className="pt-1">{item.course}</h5>
+                            <h5 className="pt-1">{item.Course}</h5>
                             {/* Uncomment if needed
                             <div style={{ fontSize: '12px', paddingTop: '10px' }}>
                               {item.videoCount > 0 && (

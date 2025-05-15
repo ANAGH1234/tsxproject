@@ -23,6 +23,13 @@ import MyCorporateTraining from '../containers/livecourses/MyCorporateTraining';
 import MyLiveTraining from '../containers/livecourses/MyLiveTraining';
 import MyMasterClasses from '../containers/livecourses/MyMasterClasses';
 import SubscribedTraining from '../containers/livecourses/SubscribedTraining';
+import MySkillChallenge from '../containers/courses/MySkillChallenge';
+import MyCourses from '../containers/courses/MyCourses';
+import MyLabs from '../containers/courses/MyLabs';
+import MyProjects from '../containers/courses/MyProjects';
+import MyQna from '../containers/courses/MyQna';
+import MyQuickNotes from '../containers/courses/MyQuickNotes';
+import SubscribedCourses from '../containers/courses/SubscribedCourses';
 
 
 
@@ -54,20 +61,20 @@ const Layout: React.FC = () => {
                 <Route path="/resources" element={<FreeResources />}>
                   <Route index element={<Navigate to="free" replace />} />
                   <Route path="free" element={<FreeCourses />} />
-                  {/* <Route path="skill-challenges" element={<MySkillChallenge />} /> */}
+                  <Route path="skill-challenges" element={<MySkillChallenge />} />
                   <Route path="books" element={<MyBooks />} />
                 </Route>
-                {/* <Route path="/subscribed-courses" element={<SubscribedCourses />}>
+                <Route path="/subscribed-courses" element={<SubscribedCourses />}>
                   <Route path="" element={<MyCourses />} />
                   <Route path="labs" element={<MyLabs />} />
                   <Route path="qna" element={<MyQna />} />
                   <Route path="quicknotes" element={<MyQuickNotes />} />
-                  <Route path="tests" element={<MySkillTests />} />
+                  {/* <Route path="tests" element={<MySkillTests />} /> */}
                   <Route path="projects" element={<MyProjects />} />
                   <Route path="free" element={<FreeCourses />} />
-                  <Route path="progressreport" element={<UserProgressReport />} />
+                  {/* <Route path="progressreport" element={<UserProgressReport />} /> */}
                   <Route path="JobOrientedCourses" element={<JobOrientedCourses />} />
-                </Route> */}
+                </Route>
                 <Route path="/bookmarked" element={<Bookmarked />}>
                   <Route path="" element={<BookMarkedLessons />} />
                   <Route path="labs" element={<CourseBookMarkedLabs />} />

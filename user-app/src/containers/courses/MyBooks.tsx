@@ -3,60 +3,38 @@ import TrainingService from '../../services/TrainingService';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import authUser from '../../helpers/authUser';
 import { EnumCourseType } from '../../helpers/enum';
-import type { Paging } from '../../models/dashboard/dashboard';
 import type { SubscriptionDTO } from '../../models/training/training';
-import type { User } from '../../models/user/User';
 
-// Extend SubscriptionDTO to include additional properties
-interface ExtendedSubscriptionDTO extends SubscriptionDTO {
-  courseId: number;
-  subscriptionId: number;
-  course: string;
-  mobileBanner: string;
-}
 
-// Define the interface for the state
-interface SubscribedTrainingData extends Paging<ExtendedSubscriptionDTO> {
-  data: ExtendedSubscriptionDTO[];
-}
-
-const MyBooks: React.FC = () => {
-  const [subscribedTrainingData, setSubscribedTraining] = useState<SubscribedTrainingData | null>(null);
+export default function MyBooks() {
+  const [subscribedTrainingData, setSubscribedTraining] = useState<SubscriptionDTO[] | any>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const user: User | null = authUser.Get();
+  const user = authUser.Get();
 
   useEffect(() => {
-    if (!user) return;
     setIsLoading(true);
     document.title = 'My Interview Books';
-    TrainingService.getSubscribedBooks(
-      user.userId,
-      user.membershipId,
-      EnumCourseType.Books,
-      user.membershipExpiry.toISOString()
-    )
-      .then((res) => {
-        setSubscribedTraining(res as SubscribedTrainingData);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error('Error fetching subscribed books:', err);
-        setIsLoading(false);
-      });
-  }, [user]);
+    if(!user) return
+    TrainingService.getSubscribedBooks(user.userId, user.membershipId, EnumCourseType.Books, user.membershipExpiry).then(res => {
+      setSubscribedTraining(res.Data);
+      setIsLoading(false);
+    });
+  }, []);
+
+
+  console.log(subscribedTrainingData)
 
   return (
     <div className="mt-4">
-      <div className="block-header">
-        <h2>My Interview Books</h2>
-      </div>
+      <div className="block-header"><h2>My Interview Books</h2></div>
       <div className="tab-wrapper">
         <section className="tab-content">
-          {subscribedTrainingData?.data && subscribedTrainingData.data.length > 0 ? (
+          {subscribedTrainingData && subscribedTrainingData.length > 0 ? (
             <div className="row mt-5">
-              {subscribedTrainingData.data.map((item, index) => {
-                let sessionURL = `/user/app/books/${item.courseId}/${item.subscriptionId}/0`;
-                sessionURL = sessionURL.replace('/resources', '');
+              {subscribedTrainingData.map((item: SubscriptionDTO, index: number) => {
+                let sessionURL = "/user/app/";
+                sessionURL += `books/${item.CourseId}/${item.SubscriptionId}/0`;
+                sessionURL = sessionURL.replace("/resources", "");
                 return (
                   <div className="col-sm-6 mb-3" key={index}>
                     <div className="card">
@@ -64,16 +42,20 @@ const MyBooks: React.FC = () => {
                         <div className="d-flex flex-row">
                           <div className="p-2">
                             <img
-                              src={item.mobileBanner}
-                              alt={item.course}
+                              src={item.MobileBanner}
+                              alt={item.Course}
                               className="img-fluid"
                               style={{ maxHeight: '70px' }}
                             />
                           </div>
                           <div className="p-2 w-100">
-                            <h5 className="pt-1">{item.course}</h5>
+                            <h5 className="pt-1">{item.Course}</h5>
                             <div className="pt-2 float-end">
-                              <a className="btn btn-primary btn-sm" href={sessionURL} target="_self">
+                              <a
+                                className="btn btn-primary btn-sm"
+                                href={sessionURL}
+                                target="_self"
+                              >
                                 Access Now
                               </a>
                             </div>
@@ -96,6 +78,7 @@ const MyBooks: React.FC = () => {
               )}
             </div>
           )}
+          {/* Added back the Browse More button */}
           {user?.membershipId === 0 && (
             <div className="text-center mt-4">
               <a href="/library/books">
@@ -118,6 +101,4 @@ const MyBooks: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default MyBooks;
+}

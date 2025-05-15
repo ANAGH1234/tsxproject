@@ -36,14 +36,14 @@ interface TrainingService {
     getScholarshipTest: (courseId: number, userId: number) => Promise<TestPapersDTO>;
     getSkillChallenge: (courseId: number, userId: number) => Promise<TestPapersDTO>;
     getTestDetails: (testPaperId: number, userId: number) => Promise<TestPapersDTO>;
-    getFreeCourses: (userId: number, membershipId: number, courseType: number, membershipExpiry: string) => Promise<Paging<SubscriptionDTO>>;
+    getFreeCourses: (userId: number, membershipId: number, courseType: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
     getSubscribedMasterClasses: (userId: number, membershipId: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
     getSubscribedTrainings: (userId: number, membershipId: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
     getSubscribedCorporateTrainings: (userId: number, membershipId: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
     getCorporateTrainings: (userId: number, subscriptionId: number, subscriptionExpiry: string) => Promise<Paging<SubscriptionDTO>>;
     getBatchesForCorporate: (courseId: number, userId: number) => Promise<SubscribeCourseDetailDTO>;
-    getSubscribedCourses: (userId: number, membershipId: number, courseType: number, membershipExpiry: string) => Promise<Paging<SubscriptionDTO>>;
-    getSubscribedBooks: (userId: number, membershipId: number, courseType: number, membershipExpiry: string) => Promise<Paging<SubscriptionDTO>>;
+    getSubscribedCourses: (userId: number, membershipId: number, courseType: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
+    getSubscribedBooks: (userId: number, membershipId: number, courseType: number, membershipExpiry:Date | string) => Promise<Paging<SubscriptionDTO>>;
     getSubscribedJobOrientedCourses: (userId: number, membershipId: number, membershipExpiry: string) => Promise<Paging<SubscriptionDTO>>;
     getSingleSubscribedCourses: (userId: number, membershipId: number, courseType: number, membershipExpiry: Date) => Promise<Paging<SubscriptionDTO>>;
     getCertificates: (userId: number) => Promise<Paging<CertificateMaster>>;

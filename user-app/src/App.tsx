@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './shared/Layout';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // // Lazy-loaded components
 // const MeetingLayout = lazy(() => import('./shared/MeetingLayout'));

@@ -3,73 +3,46 @@ import TrainingService from '../../services/TrainingService';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import authUser from '../../helpers/authUser';
 import { EnumCourseType } from '../../helpers/enum';
-import type { Paging } from '../../models/dashboard/dashboard';
 import type { SubscriptionDTO } from '../../models/training/training';
-import type { User } from '../../models/user/User';
 
 
-interface ExtendedSubscriptionDTO extends SubscriptionDTO {
-  courseId: number;
-  subscriptionId: number;
-  courseName: string;
-  mobileBanner: string;
-  firstSubscribedTabName: string;
-}
 
-interface SubscribedTrainingData extends Paging<ExtendedSubscriptionDTO> {
-  data: ExtendedSubscriptionDTO[];
-}
-
-const FreeCourses: React.FC = () => {
-  const [subscribedTrainingData, setSubscribedTraining] = useState<SubscribedTrainingData | null>(null);
+export default function FreeCourses() {
+  const [subscribedTrainingData, setSubscribedTraining] = useState<SubscriptionDTO[] | any>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const user: User | null = authUser.Get();
+  const user = authUser.Get();
 
   useEffect(() => {
-    if (!user) return;
     setIsLoading(true);
     document.title = 'My Free Courses';
-    TrainingService.getFreeCourses(
-      user.userId,
-      user.membershipId,
-      EnumCourseType.FreeCourse,
-      user.membershipExpiry.toISOString()
-    )
-      .then((res) => {
-        // Type assertion to treat the response as Paging<ExtendedSubscriptionDTO>
-        const typedResponse = res as Paging<ExtendedSubscriptionDTO>;
-        setSubscribedTraining(typedResponse);
-        setIsLoading(false);
-        // Optional: Log the response to verify the structure
-        console.log('API Response:', typedResponse);
-      })
-      .catch((err) => {
-        console.error('Error fetching free courses:', err);
-        setIsLoading(false);
-      });
-  }, [user]);
+    if(!user) return
+    TrainingService.getFreeCourses(user.userId, user.membershipId, EnumCourseType.FreeCourse, user.membershipExpiry).then(res => {
+      setSubscribedTraining(res.Data);
+      setIsLoading(false);
+    });
+  }, []);
 
   return (
     <div className="mt-4">
       <h2>My Free Courses</h2>
       <div className="tab-wrapper">
         <section className="tab-content">
-          {subscribedTrainingData?.data && subscribedTrainingData.data.length > 0 ? (
+          {subscribedTrainingData && subscribedTrainingData.length > 0 ? (
             <div className="row mt-5">
-              {subscribedTrainingData.data.map((item, index) => {
+              {subscribedTrainingData.map((item: SubscriptionDTO, index: number) => {
                 let sessionURL = '';
-                if (item.firstSubscribedTabName === '2') {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0/selfplaced`;
-                } else if (item.firstSubscribedTabName === '8') {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0/labs`;
-                } else if (item.firstSubscribedTabName === '11') {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0/tests`;
-                } else if (item.firstSubscribedTabName === '10') {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0/qna`;
-                } else if (item.firstSubscribedTabName === '7') {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0/project`;
+                if (item.FirstSubscribedTabName === '2') {
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0/selfplaced`;
+                } else if (item.FirstSubscribedTabName === '8') {
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0/labs`;
+                } else if (item.FirstSubscribedTabName === '11') {
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0/tests`;
+                } else if (item.FirstSubscribedTabName === '10') {
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0/qna`;
+                } else if (item.FirstSubscribedTabName === '7') {
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0/project`;
                 } else {
-                  sessionURL = `training/details/${item.courseId}/${item.subscriptionId}/0`;
+                  sessionURL = `training/details/${item.CourseId}/${item.SubscriptionId}/0`;
                 }
 
                 return (
@@ -79,14 +52,14 @@ const FreeCourses: React.FC = () => {
                         <div className="d-flex flex-row">
                           <div className="p-2">
                             <img
-                              src={item.mobileBanner}
-                              alt={item.courseName}
+                              src={item.MobileBanner}
+                              alt={item.Course}
                               className="img-fluid"
                               style={{ maxHeight: '70px' }}
                             />
                           </div>
                           <div className="p-2 w-100">
-                            <h5 className="pt-1">{item.courseName}</h5>
+                            <h5 className="pt-1">{item.Course}</h5>
                             <div className="pt-2 float-end">
                               <a
                                 className="btn btn-primary btn-sm"
@@ -115,7 +88,8 @@ const FreeCourses: React.FC = () => {
               )}
             </div>
           )}
-          {user?.membershipId === 0 && (
+          {/* Added Browse More button */}
+          {user && user.membershipId === 0 && (
             <div className="text-center mt-4">
               <a href="/library">
                 <button
@@ -137,6 +111,4 @@ const FreeCourses: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default FreeCourses;
+}
