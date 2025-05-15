@@ -7,7 +7,7 @@ import type { SubscriptionDTO } from "../../models/training/training";
  
 export default function MyQuickNotes() {
   const [subscribedTrainingData, setSubscribedTraining] = useState<
-    SubscriptionDTO | any
+    SubscriptionDTO[] | any
   >();
   const [isLoading, setIsLoading] = useState(false);
   const user = authUser.Get();

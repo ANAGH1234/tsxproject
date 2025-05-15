@@ -5,7 +5,7 @@ import type { AppliedJobDTO, BatchMasterDTO, CertificateMaster, ContentBookMarks
 
 interface TrainingService {
     getLiveSessions: (courseId: number, subscriptionId: number, batchId: number, userId: number, membershipId: number) => Promise<SubscribeCourseDetailDTO>;
-    getTestPapers: (courseId: number, subscriptionId: number, batchId: number, userId: number, membershipId: number) => Promise<SubscribeCourseDetailDTO>;
+    getTestPapers: (courseId: number | any, subscriptionId: number | any, batchId: number | any, userId: number, membershipId: number) => Promise<SubscribeCourseDetailDTO>;
     getBatches: (courseId: number, batchId: number) => Promise<SubscribeCourseDetailDTO>;
     getOverAllPerformance: (courseId: number, subscriptionId: number, userId: number, batchId: number) => Promise<ProgressCardDTO>;
     getLabs: (courseId: number, batchId: number, userId: number) => Promise<UserTranningDTO>;

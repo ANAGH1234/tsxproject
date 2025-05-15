@@ -30,6 +30,7 @@ import MyProjects from '../containers/courses/MyProjects';
 import MyQna from '../containers/courses/MyQna';
 import MyQuickNotes from '../containers/courses/MyQuickNotes';
 import SubscribedCourses from '../containers/courses/SubscribedCourses';
+import MySkillTests from '../containers/courses/MySkillTests';
 
 
 
@@ -69,7 +70,7 @@ const Layout: React.FC = () => {
                   <Route path="labs" element={<MyLabs />} />
                   <Route path="qna" element={<MyQna />} />
                   <Route path="quicknotes" element={<MyQuickNotes />} />
-                  {/* <Route path="tests" element={<MySkillTests />} /> */}
+                  <Route path="tests" element={<MySkillTests />} />
                   <Route path="projects" element={<MyProjects />} />
                   <Route path="free" element={<FreeCourses />} />
                   {/* <Route path="progressreport" element={<UserProgressReport />} /> */}

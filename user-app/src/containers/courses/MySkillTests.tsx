@@ -3,41 +3,28 @@ import TrainingService from "../../services/TrainingService";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import authUser from "../../helpers/authUser";
 import { EnumCourseType } from "../../helpers/enum";
-import type { User } from "../../models/user/User";
 import type { SubscriptionDTO } from "../../models/training/training";
-import type { Paging } from "../../models/dashboard/dashboard";
 
-// Define the component
-const MyQna: React.FC = () => {
+export default function MySkillTests() {
   const [subscribedTrainingData, setSubscribedTraining] = useState<
     SubscriptionDTO[] | any
-  >();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const user = authUser.Get() as User;
-
+  >([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const user = authUser.Get();
   useEffect(() => {
     setIsLoading(true);
-    document.title = "My Interview Q&A";
+    document.title = "My Skill Tests";
+    if (!user) return;
     TrainingService.getSingleSubscribedCourses(
       user.userId,
       user.membershipId,
-      EnumCourseType.QnA,
+      EnumCourseType.TestPaper,
       user.membershipExpiry
-    )
-      .then((res) => {
-        setSubscribedTraining(res.Data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error("GetSingleSubscribedCourses Error:", err);
-        setSubscribedTraining({ data: [], totalRows: 0 });
-        setIsLoading(false);
-      });
+    ).then((res) => {
+      setSubscribedTraining(res.Data);
+      setIsLoading(false);
+    });
   }, []);
-
-  console.log(subscribedTrainingData);
-  
-
   return (
     <div className="mt-4">
       <div className="tab-wrapper">
@@ -47,7 +34,12 @@ const MyQna: React.FC = () => {
             <div className="row mt-5">
               {subscribedTrainingData.map(
                 (item: SubscriptionDTO, index: number) => {
-                  const sessionURL = `/user/app/training/details/${item.CourseId}/${item.SubscriptionId}/0/qna`;
+                  let sessionURL =
+                    "/user/app/training/details/" +
+                    item.CourseId +
+                    "/" +
+                    item.SubscriptionId +
+                    "/0/tests";
                   return (
                     <div className="col-sm-6 mb-3" key={index}>
                       <div className="card">
@@ -62,9 +54,9 @@ const MyQna: React.FC = () => {
                               />
                             </div>
                             <div className="p-2 w-100">
+                              {" "}
                               <h5 className="pt-1">
-                                {item.Course} :
-                                Interview Q&A
+                                {item.Course} : Skill Tests
                               </h5>
                               <div className="pt-2 float-end">
                                 <a
@@ -79,15 +71,10 @@ const MyQna: React.FC = () => {
                           </div>
                         </div>
                         {/* <div style={{ fontSize: '12px', paddingTop: '10px' }}>
-                        {item.Course?.qaCount > 0 && (
-                          <span>
-                            <i style={{ paddingLeft: '7px' }} className="fa-regular fa-circle-question"></i>
-                            <span style={{ paddingLeft: '5px' }}>
-                              <strong>{item.Course?.qaCount} Interview Q&A</strong>
-                            </span>
-                          </span>
-                        )}
-                      </div> */}
+                          {
+                            item.NotesCount > 0 && <span><i style={{ paddingLeft: '7px' }} className='fa-regular fa-circle-question'></i><span style={{ paddingLeft: '5px' }}><strong>{item.QACount} Notes</strong></span></span>
+                          }
+                        </div> */}
                       </div>
                     </div>
                   );
@@ -101,7 +88,7 @@ const MyQna: React.FC = () => {
                   <LoadingSpinner />
                 </div>
               ) : (
-                "No Interview Q&A Found!"
+                "No Skill Tests Found!"
               )}
             </div>
           )}
@@ -109,6 +96,4 @@ const MyQna: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default MyQna;
+}

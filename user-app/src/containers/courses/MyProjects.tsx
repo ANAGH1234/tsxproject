@@ -11,10 +11,7 @@ import type { SubscriptionDTO } from '../../models/training/training';
 
 // Define the component
 const MyProjects: React.FC = () => {
-  const [subscribedTrainingData, setSubscribedTraining] = useState<Paging<SubscriptionDTO>>({
-    data: [],
-    totalRows: 0,
-  });
+  const [subscribedTrainingData, setSubscribedTraining] = useState<SubscriptionDTO[] | any>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const user = authUser.Get() as User;
 
@@ -28,7 +25,7 @@ const MyProjects: React.FC = () => {
       user.membershipExpiry
     )
       .then((res) => {
-        setSubscribedTraining(res);
+        setSubscribedTraining(res.Data);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -36,16 +33,16 @@ const MyProjects: React.FC = () => {
         setSubscribedTraining({ data: [], totalRows: 0 });
         setIsLoading(false);
       });
-  }, [user.userId, user.membershipId, user.membershipExpiry]);
+  }, []);
 
   return (
     <div className="mt-4">
       <div className="tab-wrapper">
         <section className="tab-content">
-          {subscribedTrainingData.data != null && subscribedTrainingData.data.length > 0 ? (
+          {subscribedTrainingData != null && subscribedTrainingData.length > 0 ? (
             <div className="row mt-5">
-              {subscribedTrainingData.data.map((item, index) => {
-                const sessionURL = `/user/app/training/details/${item.courseId}/${item.id}/0/project`;
+              {subscribedTrainingData.map((item: SubscriptionDTO, index:number) => {
+                const sessionURL = `/user/app/training/details/${item.CourseId}/${item.SubscriptionId}/0/project`;
                 return (
                   <div className="col-sm-6 mb-3" key={index}>
                     <div className="card">
@@ -53,14 +50,14 @@ const MyProjects: React.FC = () => {
                         <div className="d-flex flex-row">
                           <div className="p-2">
                             <img
-                              src={item.course?.mobileBanner}
-                              alt={item.course?.name}
+                              src={item.MobileBanner}
+                              alt={item.Course}
                               className="img-fluid"
                               style={{ maxHeight: '70px' }}
                             />
                           </div>
                           <div className="p-2 w-100">
-                            <h5 className="pt-1">{item.course?.name}</h5>
+                            <h5 className="pt-1">{item.Course}</h5>
                             <div className="pt-2 float-end">
                               <a className="btn btn-primary btn-sm" href={sessionURL} target="_self">
                                 Access Now
@@ -69,7 +66,7 @@ const MyProjects: React.FC = () => {
                           </div>
                         </div>
                       </div>
-                      <div style={{ fontSize: '12px', paddingTop: '10px' }}>
+                      {/* <div style={{ fontSize: '12px', paddingTop: '10px' }}>
                         {item.course?.videoCount > 0 && (
                           <span>
                             <i style={{ paddingLeft: '7px' }} className="fa-regular fa-circle-play"></i>
@@ -110,7 +107,7 @@ const MyProjects: React.FC = () => {
                             </span>
                           </span>
                         )}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 );
