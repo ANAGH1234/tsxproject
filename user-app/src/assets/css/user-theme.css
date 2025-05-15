@@ -55,7 +55,7 @@
     --text-color: #ffffff !important;
     --body-color: black;
     --font-color: white;
-    background: var(--body-color) !important;
+    /* background: var(--body-color) !important; */
     color: var(--font-color);
     --body-color: black !important;
 }

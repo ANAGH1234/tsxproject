@@ -94,7 +94,7 @@ export interface DashboardVideoProgressDTO {
 }
 
 export interface SelfPacedVideoDTO {
-    CourseContentList: CourseContentDTO[];
+    courseContentList: CourseContentDTO[];
     CourseTopics: CourseTopicDTO[];
     CourseUrl: string;
     IsSelfPlacedVideoSubscribed: boolean;

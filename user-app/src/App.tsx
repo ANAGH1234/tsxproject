@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './shared/Layout';
 
@@ -9,6 +9,7 @@ import Layout from './shared/Layout';
 
 // Define the component
 const App: React.FC = () => {
+ 
   return (
     <Routes>
       {/* <Route

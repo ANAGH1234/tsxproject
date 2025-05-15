@@ -37,9 +37,9 @@ interface TrainingService {
     getSkillChallenge: (courseId: number, userId: number) => Promise<TestPapersDTO>;
     getTestDetails: (testPaperId: number, userId: number) => Promise<TestPapersDTO>;
     getFreeCourses: (userId: number, membershipId: number, courseType: number, membershipExpiry: string) => Promise<Paging<SubscriptionDTO>>;
-    getSubscribedMasterClasses: (userId: number, membershipId: number, membershipExpiry: string) => Promise<Paging<SubscriptionDTO>>;
-    getSubscribedTrainings: (userId: number, membershipId: number, membershipExpiry: string) => Promise<Paging<SubscriptionDTO>>;
-    getSubscribedCorporateTrainings: (userId: number, membershipId: number, membershipExpiry: string) => Promise<Paging<SubscriptionDTO>>;
+    getSubscribedMasterClasses: (userId: number, membershipId: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
+    getSubscribedTrainings: (userId: number, membershipId: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
+    getSubscribedCorporateTrainings: (userId: number, membershipId: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
     getCorporateTrainings: (userId: number, subscriptionId: number, subscriptionExpiry: string) => Promise<Paging<SubscriptionDTO>>;
     getBatchesForCorporate: (courseId: number, userId: number) => Promise<SubscribeCourseDetailDTO>;
     getSubscribedCourses: (userId: number, membershipId: number, courseType: number, membershipExpiry: string) => Promise<Paging<SubscriptionDTO>>;

@@ -18,6 +18,11 @@ import Dashboard from '../containers/dashboard/Dashboard';
 import Footer from './Footer';
 import LeftMenu from './LeftMenu';
 import NavMenu from './NavMenu';
+import BookMarkedLabs from '../containers/bookmarked/BookMarkedLabs';
+import MyCorporateTraining from '../containers/livecourses/MyCorporateTraining';
+import MyLiveTraining from '../containers/livecourses/MyLiveTraining';
+import MyMasterClasses from '../containers/livecourses/MyMasterClasses';
+import SubscribedTraining from '../containers/livecourses/SubscribedTraining';
 
 
 
@@ -67,14 +72,14 @@ const Layout: React.FC = () => {
                   <Route path="" element={<BookMarkedLessons />} />
                   <Route path="labs" element={<CourseBookMarkedLabs />} />
                 </Route>
-                {/* <Route path="/subscribed-training" element={<SubscribedTraining />}>
+                <Route path="/subscribed-training" element={<SubscribedTraining />}>
                   <Route path="" element={<MyLiveTraining />} />
                   <Route path="masterclasses" element={<MyMasterClasses />} />
                   <Route path="corporatetraining" element={<MyCorporateTraining />} />
                   <Route path="bmlessons" element={<BookMarkedLessons />} />
                   <Route path="bmlabs" element={<BookMarkedLabs />} />
-                  <Route path="liveprogressreport" element={<LiveSessionsUserProgressReport />} />
-                </Route> */}
+                  {/* <Route path="liveprogressreport" element={<LiveSessionsUserProgressReport />} /> */}
+                </Route>
                 <Route
                   path="/courseplan/details/:courseid/:subscriptionid/:batchid"
                   element={<JobOrientedCourses />}
