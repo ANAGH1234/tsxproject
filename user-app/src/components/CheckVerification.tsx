@@ -3,41 +3,34 @@ import type { User } from '../models/user/User';
 import authUser from '../helpers/authUser';
 import DashboardService from '../services/DashBoardService';
 ;
+import Swal from "sweetalert2";
 
-interface SweetAlert {
-    fire: (title: string, message: string, icon: 'info' | 'success' | 'warning') => Promise<any>;
-}
 
-declare const swal: SweetAlert;
 
 const CheckVerification: React.FC = () => {
     const [message, setMessage] = useState<string>("Click to Request");
-    const user: User | null = authUser.Get();
+    const user = authUser.Get();
 
     const sendVerifyLink = async () => {
         setMessage("Sending..");
         try {
-            if (!user) {
-                await swal.fire('', 'User not authenticated!', 'warning');
-                setMessage("Request Again");
-                return;
-            }
+            if (!user) return
 
             const res = await DashboardService.SendVerifyLink(user.email); 
             if (res.status === 200) {
                 if (res.data === 1) {
-                    await swal.fire('', 'Your Email already verified. No need to take any action', 'info');
+                    await Swal.fire('', 'Your Email already verified. No need to take any action', 'info');
                     setMessage("Email Verified");
                 } else {
-                    await swal.fire('', 'Sent verification email. Please check your mail inbox or spam/junk.', 'success');
+                    await Swal.fire('', 'Sent verification email. Please check your mail inbox or spam/junk.', 'success');
                     setMessage("Email Sent");
                 }
             } else {
-                await swal.fire('', 'Unable to send verification email. Please try again!', 'warning');
+                await Swal.fire('', 'Unable to send verification email. Please try again!', 'warning');
                 setMessage("Request Again");
             }
         } catch (err) {
-            await swal.fire('', 'Unable to send verification email. Please try again!', 'warning');
+            await Swal.fire('', 'Unable to send verification email. Please try again!', 'warning');
             setMessage("Request Again");
         }
     };

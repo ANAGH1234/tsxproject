@@ -96,7 +96,7 @@ export interface DashboardVideoProgressDTO {
 export interface SelfPacedVideoDTO {
     courseContentList: CourseContentDTO[];
     CourseTopics: CourseTopicDTO[];
-    CourseUrl: string;
+    CourseURL: string;
     IsSelfPlacedVideoSubscribed: boolean;
     IsQnASubscribed: boolean;
     IsProjectSubscribed: boolean;
@@ -104,6 +104,7 @@ export interface SelfPacedVideoDTO {
     CourseWisePerformance: number;
     TotalLessons: number;
     CompletedLessons: number;
+    IsMembershipProjectSubscribed:boolean
 }
 
 export interface CourseContentDTO {
@@ -146,7 +147,7 @@ export interface CourseTopicDTO {
     CourseType: number;
     CourseName: string;
     TopicTypeName: string;
-    SubTopics: CourseSubTopicDTO[];
+    SubTopics: CourseSubTopicDTO[] ;
     QuizDDL: DropDownDTO[];
 }
 
@@ -1222,6 +1223,7 @@ export interface CourseSubTopicDTO {
     CreatedDate?: Date;
     StrCreatedDate?: string;
     DurationInSeconds: number;
+    IsBookMarked: boolean;
 }
 
 export interface DropDownDTO {

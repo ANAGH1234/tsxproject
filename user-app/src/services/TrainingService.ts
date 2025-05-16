@@ -4,21 +4,21 @@ import type { AppliedJobDTO, BatchMasterDTO, CertificateMaster, ContentBookMarks
 
 
 interface TrainingService {
-    getLiveSessions: (courseId: number, subscriptionId: number, batchId: number, userId: number, membershipId: number) => Promise<SubscribeCourseDetailDTO>;
+    getLiveSessions: (courseId: number | any, subscriptionId: number | any, batchId: number | any, userId: number, membershipId: number) => Promise<SubscribeCourseDetailDTO>;
     getTestPapers: (courseId: number | any, subscriptionId: number | any, batchId: number | any, userId: number, membershipId: number) => Promise<SubscribeCourseDetailDTO>;
-    getBatches: (courseId: number, batchId: number) => Promise<SubscribeCourseDetailDTO>;
-    getOverAllPerformance: (courseId: number, subscriptionId: number, userId: number, batchId: number) => Promise<ProgressCardDTO>;
-    getLabs: (courseId: number, batchId: number, userId: number) => Promise<UserTranningDTO>;
+    getBatches: (courseId: number | any, batchId: number | any) => Promise<SubscribeCourseDetailDTO>;
+    getOverAllPerformance: (courseId: number | any, subscriptionId: number | any , userId: number, batchId: number | any) => Promise<ProgressCardDTO>;
+    getLabs: (courseId: number | any, batchId: number|any, userId: number) => Promise<UserTranningDTO>;
     getLabsForCoursePlan: (courseId: number, batchId: number, userId: number) => Promise<UserTranningDTO>;
-    getQuickNotes: (courseId: number, userId: number) => Promise<UserTranningDTO>;
-    getQnATextData: (courseId: number, userId: number) => Promise<UserTranningDTO>;
+    getQuickNotes: (courseId: number | any, userId: number) => Promise<UserTranningDTO>;
+    getQnATextData: (courseId: number | any, userId: number) => Promise<UserTranningDTO>;
     membershipDetails: (userId: number) => Promise<Paging<SubscriptionDTO>>;
-    getLabDetails: (labId: number, courseId: number, userId: number) => Promise<LabDTO>;
-    getQuickNoteDetails: (quickNoteId: number, courseId: number, userId: number) => Promise<QuickNotesDTO>;
-    getQnATextDetails: (id: number, courseId: number, userId: number) => Promise<InterviewQuestionDto>;
+    getLabDetails: (labId: number| any, courseId: number|any, userId: number) => Promise<LabDTO>;
+    getQuickNoteDetails: (quickNoteId: number | any, courseId: number | any, userId: number) => Promise<QuickNotesDTO>;
+    getQnATextDetails: (id: number|any, courseId: number|any, userId: number) => Promise<any>;
     getBookDetails: (id: number, courseId: number, userId: number) => Promise<InterviewQuestionDto>;
     submitLabSolution: (labDetailData: LabDTO) => Promise<number>;
-    checkQnAExistForCourse: (courseId: number, uid: number) => Promise<UserTranningDTO>;
+    checkQnAExistForCourse: (courseId: number | any, uid: number ) => Promise<UserTranningDTO>;
     setVideoTracking: (liveVideoTrackingDTO: LiveVideoTrackingDTO) => Promise<number>;
     setSelfPlacedVideoTracking: (selfPlacedVideoTrackingDTO: SelfPlacedVideoTrackingDTO) => Promise<number>;
     setContentBookMarked: (contentBookMarksDTO: ContentBookMarksDTO) => Promise<number>;
@@ -27,15 +27,15 @@ interface TrainingService {
     saveQuickNoteTracking: (quickNoteTrackingDTO: QuickNoteTrackingDTO) => Promise<number>;
     saveQnATextTracking: (quickNoteTrackingDTO: QuickNoteTrackingDTO) => Promise<number>;
     saveContentDownloadHistory: (contentDownloadHistoryDTO: ContentDownloadHistoryDTO) => Promise<void>;
-    getProjectVideos: (courseId: number, courseType: number, userId: number) => Promise<SelfPacedVideoDTO>;
-    getSelfPlacedVideos: (courseId: number, courseType: number, userId: number) => Promise<SelfPacedVideoDTO>;
-    getCoursePlanDetails: (courseId: number, userId: number) => Promise<CoursePlanDetailDTO>;
-    getSelfPlacedVideosCourseWise: (courseId: number, parentCourseId: number, userId: number) => Promise<CourseDetailsDTO>;
+    getProjectVideos: (courseId: number | any, courseType: number| any, userId: number) => Promise<SelfPacedVideoDTO>;
+    getSelfPlacedVideos: (courseId: number | any, courseType: number | any, userId: number) => Promise<SelfPacedVideoDTO>;
+    getCoursePlanDetails: (courseId: number|any, userId: number) => Promise<CoursePlanDetailDTO>;
+    getSelfPlacedVideosCourseWise: (courseId: number | any, parentCourseId: number | any, userId: number) => Promise<CourseDetailsDTO>;
     getSelfPlacedVideosProgress: (userId: number) => Promise<void>;
-    getSkillTest: (courseId: number, subscriptionId: number, testPaperId: number, userId: number) => Promise<TestPapersDTO>;
-    getScholarshipTest: (courseId: number, userId: number) => Promise<TestPapersDTO>;
-    getSkillChallenge: (courseId: number, userId: number) => Promise<TestPapersDTO>;
-    getTestDetails: (testPaperId: number, userId: number) => Promise<TestPapersDTO>;
+    getSkillTest: (courseId: number| any, subscriptionId: number | any, testPaperId: number | any, userId: number) => Promise<TestPapersDTO>;
+    getScholarshipTest: (courseId: number | any, userId: number) => Promise<TestPapersDTO>;
+    getSkillChallenge: (courseId: number | any, userId: number) => Promise<TestPapersDTO>;
+    getTestDetails: (testPaperId: number | any, userId: number) => Promise<TestPapersDTO>;
     getFreeCourses: (userId: number, membershipId: number, courseType: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
     getSubscribedMasterClasses: (userId: number, membershipId: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
     getSubscribedTrainings: (userId: number, membershipId: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
@@ -48,8 +48,8 @@ interface TrainingService {
     getSingleSubscribedCourses: (userId: number, membershipId: number, courseType: number, membershipExpiry: Date) => Promise<Paging<SubscriptionDTO>>;
     getCertificates: (userId: number) => Promise<Paging<CertificateMaster>>;
     getAllTrainings: () => Promise<CourseDTO[]>;
-    liveCourseVideo: (cid: number, bid: number, sid: number, userId: number) => Promise<CourseLiveSessionVideo[]>;
-    getCourseDetailCourseId: (courseId: number, userId: number, membershipId: number, membershipExpiry: Date) => Promise<CourseDTO>;
+    liveCourseVideo: (cid: number | any, bid: number | any, sid: number|any, userId: number) => Promise<CourseLiveSessionVideo[]>;
+    getCourseDetailCourseId: (courseId: number | any, userId: number, membershipId: number, membershipExpiry: Date | any) => Promise<CourseDTO>;
     getSchedules: (userId: number, courseId: number, countryZone: string, isMore: boolean) => Promise<PagingBatchMasterDTO<BatchMasterDTO>>;
     getMySchedules: (userId: number, membershipId: number, courseId: number, countryZone: string, isMore: boolean) => Promise<PagingBatchMasterDTO<BatchMasterDTO>>;
     getCourseListBySubscription: (userId: number, membershipId: number) => Promise<CourseDTO[]>;
@@ -59,11 +59,11 @@ interface TrainingService {
     saveQuestionAns: (testData: QuestionBankOptionsDTO[]) => Promise<number>;
     saveAllQuestionAns: (testData: QuestionBankOptionsDTO[]) => Promise<number>;
     autoSaveAllQuestionAns: (selectedAnsTestData: QuestionBankOptionsDTO[]) => Promise<number>;
-    getTestResult: (testPaperId: number, courseId: number, testAttemptedStatusId: number, userId: number) => Promise<QuestionBankOptionsDTO>;
-    getScholarshipTestResult: (testPaperId: number, courseId: number, userId: number, name: string, email: string, mobileNo: string) => Promise<QuestionBankOptionsDTO>;
-    getSkillChallengeResult: (testPaperId: number, courseId: number, userId: number) => Promise<QuestionBankOptionsDTO>;
-    getAnswerSheet: (testPaperId: number, testAttemptedStatusId: number, userId: number) => Promise<QuestionBankOptionsDTO>;
-    getJobList: (email: string) => Promise<AppliedJobDTO[]>;
+    getTestResult: (testPaperId: number | any, courseId: number | any, testAttemptedStatusId: number | any, userId: number) => Promise<QuestionBankOptionsDTO>;
+    getScholarshipTestResult: (testPaperId: number | any, courseId: number | any, userId: number, name: string, email: string | any, mobileNo: string | any) => Promise<QuestionBankOptionsDTO>;
+    getSkillChallengeResult: (testPaperId: number | any, courseId: number | any, userId: number) => Promise<QuestionBankOptionsDTO>;
+    getAnswerSheet: (testPaperId: number | any, testAttemptedStatusId: number | any, userId: number) => Promise<QuestionBankOptionsDTO>;
+    getJobList: (email: string | any) => Promise<AppliedJobDTO[]>;
     getUserProgressReport: (userId: number) => Promise<ProgressCardDTO[]>;
     liveSessionsUserProgressReport: (userId: number) => Promise<UserProgressReportDTO>;
 }

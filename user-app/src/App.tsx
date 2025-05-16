@@ -1,19 +1,21 @@
-import React, { lazy, Suspense, useEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './shared/Layout';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import LoadingSpinner from './components/LoadingSpinner';
 
-// // Lazy-loaded components
-// const MeetingLayout = lazy(() => import('./shared/MeetingLayout'));
-// const VideoLayout = lazy(() => import('./shared/VideoLayout'));
-// const TestLayout = lazy(() => import('./shared/TestLayout'));
+
+// Lazy-loaded components
+const MeetingLayout = lazy(() => import('./shared/MeetingLayout'));
+const VideoLayout = lazy(() => import('./shared/VideoLayout'));
+const TestLayout = lazy(() => import('./shared/TestLayout'));
 
 // Define the component
 const App: React.FC = () => {
  
   return (
     <Routes>
-      {/* <Route
+      <Route
         path="/user/app/meeting/*"
         element={
           <Suspense fallback={<LoadingSpinner />}>
@@ -52,7 +54,7 @@ const App: React.FC = () => {
             <TestLayout />
           </Suspense>
         }
-      /> */}
+      />
       <Route path="/user/app/*" element={<Layout />} />
     </Routes>
   );

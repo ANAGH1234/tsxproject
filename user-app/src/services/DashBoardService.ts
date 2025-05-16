@@ -7,7 +7,7 @@ import type { DashboardCoursesCountDTO, MemberNotificationsDTO, ShoppingCartDTO,
 interface DashboardService {
     CoursesCount: (userId: number, membershipId: number, membershipExpiry: Date) => Promise<DashboardCoursesCountDTO>;
     GetNotification: (userId: number) => Promise<MemberNotificationsDTO>;
-    SendVerifyLink: (email: string) => Promise<AxiosResponse<SendVerifyLinkResponse>>;
+    SendVerifyLink: (email: string | any) => Promise<AxiosResponse<SendVerifyLinkResponse>>;
     GetCart: (userId: number) => Promise<ShoppingCartDTO[]>;
     VideoProgress: (userId: number) => Promise<DashboardVideoProgressDTO[]>;
     LiveSessionProgress: (userId: number) => Promise<DashboardVideoProgressDTO[]>;

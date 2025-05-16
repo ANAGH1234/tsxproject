@@ -5,7 +5,7 @@ import type { User } from "../models/user/User";
 
 
 
-export const getProfileData = async (memberId: number): Promise<UserProfileDto> => {
+export const getProfileData = async (memberId: number | any): Promise<UserProfileDto> => {
     return apiClient.get<UserProfileDto>(`/Profile/GetUserProfile/${memberId}`)
         .then((res) => res.data)
         .catch((err) => { throw err; });
@@ -48,13 +48,13 @@ export const changePassword = async (formData: ChangePasswordFormData): Promise<
     }
 
     const payload: ChangePasswordDTO = {
-        memberId: user.userId,
-        email: user.email,
-        oldPassword: formData.oldPassword,
-        newPassword: formData.newPassword,
-        confirmPassword: formData.confirmPassword,
-        token: user.token,
-        action: "changePassword",
+        MemberId: user.userId,
+        Email: user.email,
+        OldPassword: formData.OldPassword,
+        NewPassword: formData.NewPassword,
+        ConfirmPassword: formData.ConfirmPassword,
+        Token: user.token,
+        Action: "changePassword",
     };
 
     return apiClient.post<ChangePasswordResponse>("/OAuth/ChangePassword", payload)
@@ -79,7 +79,7 @@ export const uploadProfileImage = async (userId: number, file: File): Promise<Up
 
 export const getAllSkills = async (): Promise<string[]> => {
     return apiClient.get<GetAllSkillsResponse>("/Profile/GetAllSkills")
-        .then((res) => res.data.skills)
+        .then((res) => res.data.Skills)
         .catch((err) => {
             console.error("Error fetching skills:", err);
             return [];

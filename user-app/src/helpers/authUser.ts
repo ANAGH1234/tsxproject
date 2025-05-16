@@ -7,7 +7,7 @@ const initialUser: User = {
   userId: 893,
   firstName: "Mohan Chauhan",
   email: "pro.shailendra@gmail.com",
-  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ",
+ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiI4OTMiLCJzdWIiOiJNb2hhbiBDaGF1aGFuIiwiZW1haWwiOiJwcm8uc2hhaWxlbmRyYUBnbWFpbC5jb20iLCJqdGkiOiI5ODdiY2E0Ni1lYjQ3LTQxNmUtOWM1OC04NDI1OWFiZWZlMjYiLCJleHAiOjE3NDczMTY5MTQsImlzcyI6Imh0dHBzOi8vc2Nob2xhcmhhdC5jb20iLCJhdWQiOiJodHRwczovL3NjaG9sYXJoYXQuY29tIn0.kYeY7BHTAxEBw_-Ub47avUyg_y5eaP3NhVQgAZRoY34",
   mobileNo: "9560344074",
   isVerified: true,
   membershipId: 201,

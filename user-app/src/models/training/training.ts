@@ -360,53 +360,53 @@ export interface Notes {
 }
 
 export interface LiveVideoTrackingDTO {
-  Id: number;
-  CourseId: number;
-  BatchId: number;
+  Id?: number;
+  CourseId: number | any;
+  BatchId: number | any ;
   TopicId: number;
   VideoTotalTime?: string;
   VideoPlayTime: number; // decimal
-  VideoPlayDate: Date;
+  VideoPlayDate?: Date;
   UserId: number; // long
-  IsVideoEnded: boolean;
+  IsVideoEnded?: boolean;
 }
 
 export interface SelfPlacedVideoTrackingDTO {
-  Id: number;
+  Id?: number;
   CourseId: number;
-  SubTopicId: number;
-  TopicId: number;
+  SubTopicId: number | any;
+  TopicId: number | any;
   VideoTotalTime?: string;
   VideoPlayTime: number; // decimal
-  VideoPlayDate: Date;
-  UserId: number; // long
-  IsVideoEnded: boolean;
+  VideoPlayDate?: Date;
+  UserId: number|any; // long
+  IsVideoEnded?: boolean;
 }
 
 export interface ContentBookMarksDTO {
-  BookMarkId: number;
-  UserId: number; // long
-  CourseId: number;
-  ContentId: number;
+  BookMarkId?: number;
+  UserId?: number ; // long
+  CourseId: number | any;
+  ContentId: number | any;
   CourseType: number;
-  CreatedOn: Date;
+  CreatedOn?: Date;
 }
 
 export interface CertificateMaster {
-  Id: number; // long, Key
+  Id?: number; // long, Key
   CertificateId?: string;
-  MemberId: number; // long
+  MemberId?: number; // long
   Name?: string;
-  CourseId: number;
+  CourseId?: any;
   CourseName?: string;
   DomainName?: string;
-  IssueDate: Date;
-  CreatedDate: Date;
+  IssueDate?: Date;
+  CreatedDate?: Date;
   Grade?: string;
   IsActive?: boolean;
-  CertificateType: number;
+  CertificateType?: number;
   Duration?: string;
-  Medal: number;
+  Medal?: number;
   PathUrl?: string;
   ContactNo?: string;
   EmailID?: string;
@@ -417,29 +417,29 @@ export interface CertificateMaster {
 }
 
 export interface LabTrackingDTO {
-  Id: number;
+  Id?: number ;
   CourseId: number;
-  BatchId: number;
-  LabId: number;
-  UserId: number; // long
+  BatchId?: number;
+  LabId: number | any;
+  UserId: number | any; // long
   IsComplete: boolean;
-  StartDate: Date;
-  CompletedDate: Date;
+  StartDate?: Date;
+  CompletedDate?: Date;
 }
 
 export interface QuickNoteTrackingDTO {
-  Id: number;
+  Id?: number;
   CourseId: number;
-  BatchId: number;
-  QuickNoteId: number;
-  UserId: number; // long
-  IsComplete: boolean;
-  StartDate: Date;
+  BatchId?: number;
+  QuickNoteId?: number | any;
+  UserId?: number; // long
+  IsComplete?: boolean;
+  StartDate?: Date;
   CompletedDate?: Date; // Nullable DateTime
 }
 
 export interface ContentDownloadHistoryDTO {
-  MemberId: number; // long
+  MemberId: number | any; // long
   MemberName?: string;
   Email?: string;
   MembershipId?: number; // long, nullable
@@ -452,7 +452,7 @@ export interface ContentDownloadHistoryDTO {
   SubTopicName?: string;
   ContentType?: string;
   ContentName?: string;
-  DownloadDate: Date;
+  DownloadDate?: Date;
   CourseType: number;
 }
 

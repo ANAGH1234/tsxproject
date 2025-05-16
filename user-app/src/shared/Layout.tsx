@@ -8,7 +8,6 @@ import Schedules from '../containers/batches/Schedules';
 import Bookmarked from '../containers/bookmarked/Bookmarked';
 import BookMarkedLessons from '../containers/bookmarked/BookMarkedLessons';
 import CourseBookMarkedLabs from '../containers/bookmarked/CourseBookMarkedLabs';
-import BookDetails from '../containers/Books/BookDetails';
 import FreeCourses from '../containers/courses/FreeCourses';
 import FreeResources from '../containers/courses/FreeResources';
 import JobOrientedCourses from '../containers/courses/JobOrientedCourses';
@@ -29,8 +28,41 @@ import MyLabs from '../containers/courses/MyLabs';
 import MyProjects from '../containers/courses/MyProjects';
 import MyQna from '../containers/courses/MyQna';
 import MyQuickNotes from '../containers/courses/MyQuickNotes';
+
 import SubscribedCourses from '../containers/courses/SubscribedCourses';
 import MySkillTests from '../containers/courses/MySkillTests';
+import MyCertificates from '../containers/Resources/MyCertificates';
+import UserPoints from '../containers/Resources/UserPoints';
+import PaymentDetails from '../containers/Payment/PaymentDetails';
+import Project from '../containers/trainings/Project';
+import TrainingDetails from '../containers/trainings/TrainingDetails';
+import QnA from '../containers/trainings/QnA';
+import QnADetails from '../containers/trainings/QnADetails';
+import QnAText from '../containers/trainings/QnAText';
+import Sessions from '../containers/trainings/Sessions';
+import Tests from '../containers/tests/Tests';
+import Videos from '../containers/videos/Videos';
+import UserProgressReport from '../containers/progress/UserProgressReport';
+import LiveSessionsUserProgressReport from '../containers/progress/LiveSessionsUserProgressReport';
+import CoursePlanDetails from '../containers/courses/CoursePlanDetails';
+import Books from '../containers/Books/Books';
+import BookDetails from '../containers/Books/BookDetails';
+import QnATextDetails from '../containers/trainings/QnATextDetails';
+import Labs from '../containers/Labs/Labs';
+import QuickNotes from '../containers/notes/QuickNotes';
+import QuickNoteDetails from '../containers/notes/QuickNoteDetails';
+import Problem from '../containers/Labs/Problem';
+import Solution from '../containers/Labs/Solution';
+import LabDetails from '../containers/Labs/LabDetails';
+import AppliedJobs from '../containers/Jobs/AppliedJobs';
+import MeetingEnd from '../containers/meetings/MeetingEnd';
+import ChangePassword from '../containers/Profile/ChangePassword';
+import CloseMyAccount from '../containers/Profile/CloseMyAccount';
+import ProfessionalDetails from '../containers/Profile/ProfessionalDetails';
+import ProfileDetails from '../containers/Profile/ProfileDetails';
+import BasicDetails from '../containers/Profile/BasicDetails';
+import NotFound from '../containers/NotFound';
+import SubscriptionDetails from '../containers/subscription/SubscriptionDetails';
 
 
 
@@ -73,7 +105,7 @@ const Layout: React.FC = () => {
                   <Route path="tests" element={<MySkillTests />} />
                   <Route path="projects" element={<MyProjects />} />
                   <Route path="free" element={<FreeCourses />} />
-                  {/* <Route path="progressreport" element={<UserProgressReport />} /> */}
+                  <Route path="progressreport" element={<UserProgressReport />} />
                   <Route path="JobOrientedCourses" element={<JobOrientedCourses />} />
                 </Route>
                 <Route path="/bookmarked" element={<Bookmarked />}>
@@ -86,28 +118,31 @@ const Layout: React.FC = () => {
                   <Route path="corporatetraining" element={<MyCorporateTraining />} />
                   <Route path="bmlessons" element={<BookMarkedLessons />} />
                   <Route path="bmlabs" element={<BookMarkedLabs />} />
-                  {/* <Route path="liveprogressreport" element={<LiveSessionsUserProgressReport />} /> */}
+                  <Route path="liveprogressreport" element={<LiveSessionsUserProgressReport />} />
                 </Route>
                 <Route
-                  path="/courseplan/details/:courseid/:subscriptionid/:batchid"
+                  path="/courseplan/details"
                   element={<JobOrientedCourses />}
                 >
-                  {/* <Route path="" element={<CoursePlanDetails />} />
-                  <Route path="livesession" element={<Sessions />} /> */}
+                  <Route path="" element={<CoursePlanDetails />} />
+                  <Route path="livesession" element={<Sessions />} />
                 </Route>
                 <Route path="/books" element={<MyBooks />} />
                 <Route path="/resources" element={<FreeResources />} />
-                {/* <Route
+                <Route
                   path="/books/:courseid/:subscriptionid/:batchid"
                   element={<TrainingDetails />}
-                > */}
-                  {/* <Route path="" element={<Books />} />
-                </Route> */}
+                >
+                  <Route path="" element={<Books />} />
+                </Route>
                 <Route
                   path="/books/:courseid/:subscriptionid/details/:id"
                   element={<BookDetails />}
                 />
-                {/* <Route
+                <Route path="certificates" element={<MyCertificates />} />
+                <Route path="points" element={<UserPoints />} />
+                <Route path="/payment-details" element={<PaymentDetails />} />
+                <Route
                   path="/training/details/:courseid/:subscriptionid/:batchid"
                   element={<TrainingDetails />}
                 >
@@ -121,7 +156,7 @@ const Layout: React.FC = () => {
                   </Route>
                   <Route path="project" element={<Project />} />
                   <Route path="quicknotes" element={<QuickNotes />} />
-                  <Route path="certificate" element={<Certificate />} />
+
                 </Route>
                 <Route path="/points" element={<UserPoints />} />
                 <Route path="/meeting-end" element={<MeetingEnd />} />
@@ -150,7 +185,7 @@ const Layout: React.FC = () => {
                   element={<QnATextDetails />}
                 />
                 <Route path="/subscriptions" element={<SubscriptionDetails />} />
-                <Route path="*" element={<NotFound />} /> */}
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
           </div>

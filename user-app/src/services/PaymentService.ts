@@ -8,7 +8,7 @@ export const fetchPaymentDetails = async (email: string): Promise<TransactionDTO
         const response = await apiClient.get<PaymentDetailsResponse>(
             `/User/PaymentDetails?page=1&filterId=1&textsrch=${encodeURIComponent(email)}&CourseId=0`
         );
-        return response.data.data || [];
+        return response.data.Data || [];
     } catch (error) {
         console.error("Error fetching payments:", error);
         return [];
@@ -33,7 +33,7 @@ export const downloadInvoice = async (invoiceNo: string, paymentId: number): Pro
 export const generateInvoice = async (paymentId: number): Promise<void> => {
     try {
         const response = await apiClient.get<GenerateInvoiceResponse>(`/Dashboard/GenerateInvoice/GenerateInvoice/${paymentId}`);
-        if (response.data.success) {
+        if (response.data.Success) {
             window.location.reload();
         }
     } catch (error) {

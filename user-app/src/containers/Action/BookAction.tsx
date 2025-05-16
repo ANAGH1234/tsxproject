@@ -1,117 +1,32 @@
-
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
 import TrainingService from '../../services/TrainingService';
 import authUser from '../../helpers/authUser';
-import type { QuickNoteTrackingDTO } from '../../models/training/training';
-import type { InterviewQuestionDto } from '../../models/dashboard/dashboard';
-import type { User } from '../../models/user/User';
 
-interface BookActionProps {
-  item: InterviewQuestionDto; 
-  content: { contentId: number }; 
-  isQnATextStarted: string; 
-  qnATextData: { isBookSubscribed: boolean }; 
-  access: boolean;
-  courseid: string;
-  subscriptionid: string;
-}
-
-
-
-const BookAction: React.FC<BookActionProps> = ({ item, content, isQnATextStarted, qnATextData, access, courseid, subscriptionid }) => {
-  const user: User | null = authUser.Get();
-
-  const saveTracking = (): void => {
-    if (!user) {
-      console.error('User not authenticated');
-      return;
+export default function BookAction(props:any) {
+    const user = authUser.Get();
+    //console.log(props);
+    const saveTracking = () => {
+        const quickNoteTrackingDTO = { QuickNoteId: props.item.Id, CourseId: props.content.ContentId, IsComplete: false, UserId:user?.userId }
+        // TrainingService.saveQnATextTracking(quickNoteTrackingDTO).then(res => { })
     }
-
-    const quickNoteTrackingDTO: QuickNoteTrackingDTO = {
-      id: 0, // New tracking entry
-      courseId: content.contentId,
-      batchId: 0, // Not provided, assume 0 or adjust based on context
-      quickNoteId: item. || 0,
-      userId: user.userId,
-      isComplete: false,
-      startDate: new Date(),
-      completedDate: undefined, // Nullable
-    };
-
-    TrainingService.saveQnATextTracking(quickNoteTrackingDTO)
-      .then((res) => {
-        console.log('Tracking saved:', res);
-      })
-      .catch((err) => {
-        console.error('Error saving QnA text tracking:', err);
-      });
-  };
-
-  if (!user) {
-    return <span className="text-danger">Please log in to access this content</span>;
-  }
-
-  return (
-    <span>
-      <span style={{ fontSize: '12px' }}>
-        {item.isQnATextCompleted ? (
-          <span style={{ cursor: 'pointer', color: '#049285' }} className="ps-2">
-            <i style={{ color: '#049285' }} className="fa fa-check-circle" aria-hidden="true" aria-label="Completed"></i>{' '}
-            Completed
-          </span>
-        ) : (
-          <span style={{ cursor: 'pointer' }} className="ps-2">
-            {isQnATextStarted}
-          </span>
-        )}
-      </span>{' '}
-       
-      {qnATextData.isBookSubscribed && access ? (
-        item.isQnATextCompleted ? (
-          <Link
-            to={`/user/app/books/${courseid}/${subscriptionid}/details/${item.id}`}
-            onClick={saveTracking}
-            className="btn btn-success"
-            style={{ lineHeight: '1' }}
-            aria-label="Restart QnA Text"
-          >
-            Restart
-          </Link>
-        ) : item.isQnATextStarted ? (
-          <Link
-            to={`/user/app/books/${courseid}/${subscriptionid}/details/${item.id}`}
-            onClick={saveTracking}
-            className="btn btn-info"
-            style={{ lineHeight: '1', padding: '6px' }}
-            aria-label="Resume QnA Text"
-          >
-            Resume
-          </Link>
-        ) : (
-          <Link
-            to={`/user/app/books/${courseid}/${subscriptionid}/details/${item.id}`}
-            onClick={saveTracking}
-            className="btn btn-primary"
-            style={{ lineHeight: '1' }}
-            aria-label="Start QnA Text"
-          >
-            Start
-          </Link>
-        )
-      ) : (
-        <button
-          type="button"
-          className="btn-sm ms-2"
-          style={{ lineHeight: '1.3', backgroundColor: 'dimgrey', color: 'Linen', opacity: '1' }}
-          disabled
-          aria-label="Start QnA Text (Disabled)"
-        >
-          Start Now
-        </button>
-      )}
-    </span>
-  );
-};
-
-export default BookAction;
+    return (
+        <span>
+            <span style={{ fontSize: '12px' }}>
+                {
+                    props.item.IsQnATextCompleted == true ?
+                        <span style={{ cursor: 'pointer', color: '#049285' }} className="ps-2" >
+                            <i style={{ color: '#049285' }} className="fa fa-check-circle" aria-hidden="true"></i> Completed
+                        </span> : <span style={{ cursor: 'pointer' }} className="ps-2">
+                            {props.isQnATextStarted}
+                        </span>
+                }
+            </span> &nbsp;
+            {
+                props.qnATextData.IsBookSubscribed == true && props.access == true ? props.item.IsQnATextCompleted == true ? <a onClick={() => saveTracking()} href={`/user/app/books/${props.courseid}/${props.subscriptionid}/details/${props.item.Id}`} className="btn btn-success" style={{ lineHeight: '1' }}>Restart</a> :
+                    props.item.IsQnATextStarted == true ? <a onClick={() => saveTracking()} href={`/user/app/books/${props.courseid}/${props.subscriptionid}/details/${props.item.Id}`} className="btn btn-info" style={{ lineHeight: '1', padding: '6px' }}>Resume</a> :
+                        <a onClick={() => saveTracking()} href={`/user/app/books/${props.courseid}/${props.subscriptionid}/details/${props.item.Id}`} className="btn btn-primary" style={{ lineHeight: '1' }}>Start</a> :
+                    <button type="button" className="btn-sm ms-2" style={{ lineHeight: '1.3', backgroundColor: 'dimgrey !important', color: 'Linen !important', opacity: '1' }} disabled>Start Now</button>
+            }
+        </span>
+    )
+}
