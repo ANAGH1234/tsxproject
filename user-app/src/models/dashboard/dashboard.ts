@@ -493,6 +493,7 @@ export interface TestPapersDTO {
     Details: string;
     TestPaperType: number | null;
     TestPaperTypeText: string;
+    QuestionN:number
 }
 
 export interface CourseCategoryDTO {

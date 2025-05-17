@@ -13,9 +13,8 @@ import SkillChallenge from '../containers/SkillChallenge/SkillChallenge';
 
 import SkillChallengeResult from '../containers/SkillChallenge/SkillChallengeResult';
 import ScholarshipTest from '../containers/scholarship/ScholarshipTest.tsx';
-import ScholarshipTestDetails from '../containers/scholarship/ScholarshipTestDetails.tsx';
 import ScholarshipTestResult from '../containers/scholarship/ScholarshipTestResult.tsx';
-import SkillChallengeDetails from '../containers/scholarship/ScholarshipTestDetails.tsx';
+import SkillChallengeDetails from '../containers/SkillChallenge/SkillChallengeDetails.tsx';
 
 export default function TestLayout() {
     return (
@@ -34,7 +33,7 @@ export default function TestLayout() {
                         <Route path='/test/:courseid/:testpaperid/exam/result' element={<ScholarshipTestResult />}></Route>
                         
                         <Route path='/challenge/:courseid/' element={<SkillChallenge />}></Route>
-                        {/* <Route path='/challenge/:courseid/:testpaperid/skillexam/start' element={<SkillChallengeDetails />}></Route> */}
+                        <Route path='/challenge/:courseid/:testpaperid/skillexam/start' element={<SkillChallengeDetails />}></Route>
                         <Route path='/challenge/:courseid/:testpaperid/skillexam/result' element={<SkillChallengeResult />}></Route>
                     </Routes>
                 </div>
