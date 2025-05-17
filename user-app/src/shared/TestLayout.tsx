@@ -15,6 +15,8 @@ import SkillChallengeResult from '../containers/SkillChallenge/SkillChallengeRes
 import ScholarshipTest from '../containers/scholarship/ScholarshipTest.tsx';
 import ScholarshipTestResult from '../containers/scholarship/ScholarshipTestResult.tsx';
 import SkillChallengeDetails from '../containers/SkillChallenge/SkillChallengeDetails.tsx';
+import ExamDetails from '../containers/tests/ExamDetails.tsx';
+import ScholarshipTestDetails from '../containers/scholarship/ScholarshipTestDetails.tsx';
 
 export default function TestLayout() {
     return (
@@ -24,12 +26,12 @@ export default function TestLayout() {
                 <div className="container">
                     <Routes>
                         <Route path='/:courseid/:subscriptionid/:testpaperid' element={<SkillTest />}></Route>
-                        {/* <Route path='/:courseid/:subscriptionid/:testpaperid/exam/start' element={<ExamDetails />}></Route> */}
+                        <Route path='/:courseid/:subscriptionid/:testpaperid/exam/start' element={<ExamDetails />}></Route>
                         <Route path='/:courseid/:subscriptionid/:testpaperid/:testattemptedstatusId/exam/result' element={<ExamResult />}></Route>
                         <Route path='/:courseid/:subscriptionid/:testpaperid/:testattemptedstatusId/exam/answersheet' element={<AnswerSheet />}></Route>
 
                         <Route path='/test/:courseid' element={<ScholarshipTest />}></Route>
-                        {/* <Route path='/test/:courseid/:testpaperid/exam/start' element={<ScholarshipTestDetails />}></Route> */}
+                        <Route path='/test/:courseid/:testpaperid/exam/start' element={<ScholarshipTestDetails />}></Route>
                         <Route path='/test/:courseid/:testpaperid/exam/result' element={<ScholarshipTestResult />}></Route>
                         
                         <Route path='/challenge/:courseid/' element={<SkillChallenge />}></Route>

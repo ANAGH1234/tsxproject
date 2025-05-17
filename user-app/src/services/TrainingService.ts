@@ -35,7 +35,7 @@ interface TrainingService {
     getSkillTest: (courseId: number| any, subscriptionId: number | any, testPaperId: number | any, userId: number) => Promise<TestPapersDTO>;
     getScholarshipTest: (courseId: number | any, userId: number) => Promise<TestPapersDTO>;
     getSkillChallenge: (courseId: number | any, userId: number) => Promise<TestPapersDTO>;
-    getTestDetails: (testPaperId: number | any, userId: number) => Promise<TestPapersDTO>;
+    getTestDetails: (testPaperId: number | any, userId: number) => Promise<TestPapersDTO[]>;
     getFreeCourses: (userId: number, membershipId: number, courseType: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
     getSubscribedMasterClasses: (userId: number, membershipId: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
     getSubscribedTrainings: (userId: number, membershipId: number, membershipExpiry: Date | string) => Promise<Paging<SubscriptionDTO>>;
@@ -56,9 +56,9 @@ interface TrainingService {
     getUserSubscriptions: (userId: number) => Promise<number[]>;
     getCourseList: () => Promise<CourseDTO[]>;
     getTimeZonesList: () => Promise<any[]>;
-    saveQuestionAns: (testData: QuestionBankOptionsDTO[]) => Promise<number>;
-    saveAllQuestionAns: (testData: QuestionBankOptionsDTO[]) => Promise<number>;
-    autoSaveAllQuestionAns: (selectedAnsTestData: QuestionBankOptionsDTO[]) => Promise<number>;
+    saveQuestionAns: (testData: any) => Promise<number>;
+    saveAllQuestionAns: (testData: any) => Promise<any>;
+    autoSaveAllQuestionAns: (selectedAnsTestData: any) => Promise<number>;
     getTestResult: (testPaperId: number | any, courseId: number | any, testAttemptedStatusId: number | any, userId: number) => Promise<QuestionBankOptionsDTO>;
     getScholarshipTestResult: (testPaperId: number | any, courseId: number | any, userId: number, name: string, email: string | any, mobileNo: string | any) => Promise<QuestionBankOptionsDTO>;
     getSkillChallengeResult: (testPaperId: number | any, courseId: number | any, userId: number) => Promise<QuestionBankOptionsDTO>;
@@ -225,7 +225,7 @@ const TrainingService: TrainingService = {
             .catch((err) => { throw err; });
     },
     getTestDetails(testPaperId, userId) {
-        return apiClient.get<TestPapersDTO>(`/training/GetTestDetails/${testPaperId}/${userId}`)
+        return apiClient.get<TestPapersDTO[]>(`/training/GetTestDetails/${testPaperId}/${userId}`)
             .then((res) => res.data)
             .catch((err) => { throw err; });
     },
@@ -336,7 +336,7 @@ const TrainingService: TrainingService = {
     },
     saveAllQuestionAns(testData) {
         return apiClient.post<number>('/training/SaveAllQuestionAns', testData)
-            .then((res) => res.data)
+            .then((res) => res)
             .catch((err) => { throw err; });
     },
     autoSaveAllQuestionAns(selectedAnsTestData) {

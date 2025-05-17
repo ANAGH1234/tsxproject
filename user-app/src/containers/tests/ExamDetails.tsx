@@ -7,11 +7,13 @@ import authUser from "../../helpers/authUser";
 import type { TestPapersDTO } from "../../models/dashboard/dashboard";
 import Swal from "sweetalert2";
 
-export default function SkillChallengeDetails() {
+export default function ExamDetails() {
   let timerTestData: any;
   let navigate = useNavigate();
   const { testpaperid } = useParams();
+  // const {batchid} = useParams();
   const { courseid } = useParams();
+  const { subscriptionid } = useParams();
   const user = authUser.Get();
   const [testData, setTestData] = useState<TestPapersDTO[]>([]);
   const [totalQ, setTotalQ] = useState<number>(0);
@@ -33,7 +35,7 @@ export default function SkillChallengeDetails() {
       currentQ = res[0].AttemptedQuestionCount + 1;
       setCurrentQ(currentQ);
       setFilterTestData(
-        res.filter((test) => {
+        res.filter((test: TestPapersDTO) => {
           // return test.Sequence === currentQ;
           return test.QuestionN === currentQ;
         })
@@ -46,9 +48,10 @@ export default function SkillChallengeDetails() {
     });
   }, []);
 
+  // console.log(filterTestData);
+
   // let completed = false;
   const Ref = useRef<any>(null);
-
   // The state for our timer
   const [timer, setTimer] = useState("00:00");
 
@@ -116,9 +119,9 @@ export default function SkillChallengeDetails() {
   // the countdown is via action event from the
   // button first we create function to be called
   // by the button
-  // const onClickReset = () => {
-  //   clearTimer(getDeadTime());
-  // };
+  //   const onClickReset = () => {
+  //     clearTimer(getDeadTime());
+  //   };
 
   const ul: React.CSSProperties = {
     margin: "0 auto",
@@ -130,8 +133,7 @@ export default function SkillChallengeDetails() {
     background: "transparent",
     textDecoration: "none",
     listStyle: "none",
-    // outline: 'none',
-    boxSizing: "border-box",
+    boxSizing: "border-box", // ✅ valid literal
   };
   const ul_li: React.CSSProperties = {
     display: "-webkit-flex",
@@ -157,12 +159,17 @@ export default function SkillChallengeDetails() {
   };
   const prev = "< Prev";
   const next = "Next >";
-  // let type;
+
+  //   console.log(currentQ);
+
+  //   let type;
   const nextQ = () => {
     setSelectedMultipleAns([]);
 
     let selectedAnsTestData = testData;
     selectedAnsTestData.forEach((element) => {
+      //   console.log(currentQ, element.QuestionN);
+
       // if (element.Sequence === currentQ) {
       if (element.QuestionN === currentQ) {
         element.Mins = timer.split(":")[0];
@@ -258,19 +265,27 @@ export default function SkillChallengeDetails() {
       (res: any) => {
         if (res.data > 0) {
           const url =
-            "/user/app/skill/challenge/" +
+            "/user/app/test/" +
             courseid +
             "/" +
+            subscriptionid +
+            "/" +
             testpaperid +
-            "/skillexam/result";
+            "/" +
+            res.data +
+            "/exam/result";
           navigate(url);
         } else {
           const url =
-            "/user/app/skill/challenge/" +
+            "/user/app/test/" +
             courseid +
             "/" +
+            subscriptionid +
+            "/" +
             testpaperid +
-            "/skillexam/result";
+            "/" +
+            res.data +
+            "/exam/result";
           navigate(url);
         }
       }
@@ -313,15 +328,19 @@ export default function SkillChallengeDetails() {
           element.Secs = +timer.split(":")[1];
         });
         setTestData(selectedAnsTestData);
-
-        TrainingService.saveAllQuestionAns(testData).then((res) => {
+        TrainingService.saveAllQuestionAns(testData).then((res: any) => {
+          console.log(res.data);
           if (res.data > 0) {
             const url =
-              "/user/app/skill/challenge/" +
+              "/user/app/test/" +
               courseid +
               "/" +
+              subscriptionid +
+              "/" +
               testpaperid +
-              "/skillexam/result";
+              "/" +
+              res.data +
+              "/exam/result";
             clearTimer(null);
             navigate(url);
           }
@@ -359,7 +378,8 @@ export default function SkillChallengeDetails() {
     timerTestData = selectedAnsTestData;
   };
   const exitTest = () => {
-    const exitQuizURL = "/skill-challenge";
+    const exitQuizURL =
+      "/user/app/test/" + courseid + "/" + subscriptionid + "/" + testpaperid;
     Swal.fire({
       title: "",
       text: "Are you sure, You want to exit Test?",
@@ -371,7 +391,7 @@ export default function SkillChallengeDetails() {
     }).then(function (isConfirm) {
       if (isConfirm.value) {
         clearTimer(null);
-        window.location.href = exitQuizURL;
+        navigate(exitQuizURL);
       } else {
         //return false;
       }
@@ -396,8 +416,8 @@ export default function SkillChallengeDetails() {
                   })}
                 </div>
               )}
-              <div className="col-md-3 d-flex align-items-center"></div>
-              <div className="col-md-3 d-flex align-items-center">
+              <div className="col-md-4 d-flex align-items-center"></div>
+              <div className="col-md-2 d-flex align-items-center">
                 <i style={{ fontSize: "24px" }} className="far fa-clock"></i>
                 &nbsp;&nbsp;<strong>{timer}</strong>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -419,7 +439,7 @@ export default function SkillChallengeDetails() {
             <div className="row" style={{ marginBottom: "50px" }}>
               {filterTestData != null && (
                 <div className="col-md-9">
-                  {filterTestData.map((item, index) => {
+                  {filterTestData.map((item: TestPapersDTO, index) => {
                     return (
                       <div className="pt-3" key={index}>
                         <p style={{ paddingLeft: "10px" }}>
@@ -431,8 +451,9 @@ export default function SkillChallengeDetails() {
                         <div style={{ paddingLeft: "10px" }}>
                           {item != null &&
                             item.QuestionOptions != null &&
+                            Array.isArray(item.QuestionOptions) &&
                             item.QuestionOptions.map(
-                              (option: TestPapersDTO, oIndex: number) => {
+                              (option: any, oIndex: number) => {
                                 const name = "option" + currentQ;
                                 if (item.QuestionTypeId === 1) {
                                   return (
@@ -504,7 +525,6 @@ export default function SkillChallengeDetails() {
                   })}
                 </div>
               )}
-
               <div
                 className="col-md-3"
                 style={{ borderLeft: "1px solid #ddd" }}

@@ -455,6 +455,17 @@ export interface CourseDisplayDTO {
 }
 
 export interface TestPapersDTO {
+    OptionChar: string | number | readonly string[] | undefined;
+    OptionTitle: any;
+    Mins: any;
+    Secs: number;
+    UsersSelectedAnswer: any;
+    CorrectOption: any;
+    CorrectQuestions: number;
+    WrongQuestions: number;
+    LeftQuestions: number;
+    QuestionOptions: any;
+    AttemptedQuestionCount: number;
     TestPaperId: number;
     Title: string;
     TotalQuestions: number;
